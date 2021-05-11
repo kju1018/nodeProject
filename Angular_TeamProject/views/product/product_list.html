@@ -1,0 +1,57 @@
+<div>
+  <div class="mb-3 d-flex justify-content-between" ng-show="uid">
+      <button class="btn btn-success btn-sm" ng-click="createProductForm()">생성</button>  <!--버튼 클릭하면 상태함수 실행-->
+      <div>
+      <button class="btn btn-secondary btn-sm" ng-click="getList(1, '전체상품')">전체상품</button>
+      <button class="btn btn-secondary btn-sm" ng-click="getList(1, '인테리어소품')">인테리어소품</button>
+      <button class="btn btn-secondary btn-sm" ng-click="getList(1, '디퓨저/캔들')">디퓨저/캔들</button>
+      <button class="btn btn-secondary btn-sm" ng-click="getList(1, '액자')">액자</button>      
+      <button class="btn btn-secondary btn-sm" ng-click="getList(1, '조화/화병')">조화/화병</button>
+
+    </div>
+  </div>
+  <div ng-switch on="category">
+    <div ng-switch-default>
+      <table class="table table-striped table-bordered">
+          <tr>
+              <th>상품번호</th>
+              <th>상품이름</th>
+              <th>카테고리</th>
+              <th>등록날짜</th>
+              <th>상품가격</th>
+              <th>상품활성화</th>
+          </tr>
+          <tr ng-repeat="product in products" > <!--tr이 repeat됨. boards라는 배열에서 하나씩 객체를 가져옴 -->            
+              <td>{{product.productno}}</td>
+              <td style="cursor: pointer;"><a ng-click="read(product.productno)" style="color: rgb(77, 76, 76);">{{product.pname}}</a></td> <!--click을 했을 때 read라고 하는 상태함수에 번호가 들어가서 실행이 됨. 이것도 컨트롤러에서 만들어야 함-->
+              <td>{{product.pcategory}}</td>
+              <td>{{product.pregisterdate | date:"yyyy.MM.dd"}}</td>
+              <td>{{product.pprice}}</td>
+              <td ng-style="{'background-color':product.penable==0? '#FF4646': ''}">{{product.penable}}</td>
+            
+          </tr>
+          <td colspan="6" style="text-align: center;">
+            <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(1, category)">처음</button> <!--처음이란 것은 항상 존재-->
+            <button   class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo>1" 
+                        ng-click="getList(pager.startPageNo-1, category)">이전</button> <!--있을 수도 있고 없을 수도 있음. ng-show -->
+            <button ng-repeat="i in pageRange"
+                      class="btn btn-sm {{(pager.pageNo==i)?'btn btn-secondary btn-sm':'btn btn-outline-secondary btn-sm'}} {{!$last?'mr-1':''}}" 
+                        ng-click="getList(i, category)">{{i}}</button>
+                        <!--pageRange라는 배열에서 숫자(i)를 하나 받아서
+                            {{(pager.pageNo==i)?'btn-danger':'btn-outline-success'}}: 현재 페이지의 색을 빨간색으로 그렇지 않다면 outline만 있도록 하기 위해서  
+                            {{!$last?'mr-1':''}} : 마지막페이지라면 마진을 줌
+                            "getList(i)">{{i}}: 클릭하면 해당 페이지로 이동
+                        -->
+            <button   class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo < pager.totalGroupNo" 
+                        ng-click="getList(pager.endPageNo+1, category)">다음</button> <!--맨 마지막 그룹이면 다음이 안 나옴-->
+            <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(pager.totalPageNo, category)">맨끝</button> <!--이건 처음과 같이 항상 있어야 함-->
+        </td>
+      </table>
+    </div>
+
+  </div>
+</div>

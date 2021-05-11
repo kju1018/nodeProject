@@ -1,0 +1,65 @@
+<div>
+  <div class="form-group">
+      <label>상품이름:</label>
+      <input class="form-control" ng-model="product.pname" readonly/>
+  </div>
+  <div class="form-group">
+      <label>작성자:</label>
+      <input class="form-control" value="{{uid}}" readonly/>
+  </div>
+  <div class="form-group">
+      <label>카테고리:</label>
+      <input class="form-control" ng-model="product.pcategory" readonly/>
+  </div>
+  <div class="form-group">
+      <label>상품가격:</label>
+      <input class="form-control" ng-model="product.pprice" readonly/>
+  </div>
+  <div class="form-group">
+    <label>판매갯수:</label>
+    <input class="form-control" ng-model="product.psalescount" readonly/>
+  </div>
+  <div class="form-group">
+    <label>재고갯수:</label>
+    <input class="form-control" ng-model="product.pstock" readonly/>
+  </div>
+  <div class="form-group">
+    <label>상품활성화:</label>
+    <input class="form-control" ng-model="product.penable" readonly/>
+  </div>
+<div class="form-group">
+<label>첨부:</label>
+<a href="{{battachUrl(product.productno)}}">
+    <img ng-show="product.detailimgoname != 'null'" src="{{battachUrl(product.productno)}}" width="200"/>
+</a>
+</div>
+<div class="form-group">
+<label>첨부:</label>
+<a href="{{imgbattachUrl(imglist[0].imgno)}}">
+    <img ng-show="imglist[0].ioriginalname != 'null'" src="{{imgbattachUrl(imglist[0].imgno)}}" width="200"/>
+</a>
+</div>
+<div class="form-group">
+<label>첨부:</label>
+<a href="{{imgbattachUrl(imglist[1].imgno)}}">
+    <img ng-show="imglist[1].ioriginalname != 'null'" src="{{imgbattachUrl(imglist[1].imgno)}}" width="200"/>
+</a>
+</div>
+<div class="form-group">
+<label>첨부:</label>
+<a href="{{imgbattachUrl(imglist[2].imgno)}}">
+    <img ng-show="imglist[2].ioriginalname != 'null'" src="{{imgbattachUrl(imglist[2].imgno)}}" width="200"/>
+</a>
+</div>
+<div class="form-group">
+<label>첨부:</label>
+<a href="{{imgbattachUrl(imglist[3].imgno)}}">
+    <img ng-show="imglist[3].ioriginalname != 'null'" src="{{imgbattachUrl(imglist[3].imgno)}}" width="200"/>
+</a>
+</div>
+
+  <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo, category)">목록</button>
+  <button class="btn btn-primary btn-sm" ng-click="updateProductForm(product.productno)">수정</button> 
+  <button class="btn btn-primary btn-sm" ng-click="deleteProduct(product.productno)">삭제</button>       
+</div>
+

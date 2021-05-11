@@ -1,0 +1,27 @@
+<div class="card-body">
+    <div class="form-group">
+        <label>제목:</label>
+        <input class="form-control" ng-model="notice.btitle" readonly/>
+    </div>
+    <div class="form-group">
+        <label>글쓴이:</label>
+        <input class="form-control" ng-model="notice.userid" readonly/>
+    </div>
+    <div class="form-group">
+        <label>날짜:</label>
+        <input class="form-control" value="{{notice.bdate | date:'yyyy.MM.dd'}}" readonly/>
+    </div>
+    <div class="form-group">
+        <label>조회수:</label>
+        <input class="form-control" ng-model="notice.bcount" readonly/>
+    </div>
+    <div class="form-group">
+        <label>내용:</label>
+        <textarea class="form-control" ng-model="notice.bcontent" readonly></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
+
+    <button class="btn btn-primary btn-sm" ng-click="updateNoticeForm()">수정</button> 
+    <button class="btn btn-primary btn-sm" ng-click="deleteNotice(notice.boardno)">삭제</button>       
+</div>

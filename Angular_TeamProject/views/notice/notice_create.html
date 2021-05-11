@@ -1,0 +1,18 @@
+<div class="card-body">
+    <div class="form-group">
+        <label>제목:</label>
+        <input class="form-control" ng-model="notice.btitle"/>
+    </div>
+    <div class="form-group">
+        <label>작성자:</label>
+        <input class="form-control" value="{{uid}}" readonly/>
+    </div>
+    <div class="form-group">
+        <label>내용:</label>
+        <textarea class="form-control" ng-model="notice.bcontent"></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-sm" ng-click="createNotice(notice)">등록</button>
+    <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
+
+</div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <link href="./resources/thefive.css" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    
+    <script src="app.js"></script>
+    <script src="appRoute.js"></script>
+    
+    <script src="controllers/loginController.js"></script>
+    <script src="controllers/noticeController.js"></script>
+    <script src="controllers/communityqnaController.js"></script>
+    <script src="controllers/joinController.js"></script>
+    <script src="controllers/orderController.js"></script>
+    <script src="controllers/reviewController.js"></script>
+    <script src="controllers/userController.js"></script>
+    <script src="controllers/pqnaController.js"></script>
+    <script src="controllers/productController.js"></script>
+    
+
+
+    <script src="services/loginService.js"></script>
+    <script src="services/noticeService.js"></script>
+    <script src="services/communityqnaService.js"></script>
+    <script src="services/joinService.js"></script>
+    <script src="services/orderService.js"></script>
+    <script src="services/reviewService.js"></script>
+    <script src="services/userService.js"></script>
+    <script src="services/pqnaService.js"></script>
+    <script src="services/productService.js"></script>
+
+</head>
+<!-- <body ng-app="app">-->
+<!-- ng태그를 body에도 사용 가능 -->
+<body ng-controller="mainController">
+    <div class="d-flex flex-column vh-100">
+        <div class="header">    
+            <div class="login" ng-show="uid">
+                ID: {{uid}}<button class="btn btn-dark btn-sm ml-2" ng-click="logout()">로그아웃</button>
+            </div>
+            <div class="login" ng-show="!uid">
+                
+            </div>
+            <div class="logo">
+                <a href="./">
+                <img src="./resources/logo.png" width="170" height="60">
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-grow-1 container-fluid" >
+            <div class="row h-100">
+            <div class="col-md-6 col-lg-2 p-3 bg-white">
+                <div class="h-100 d-flex flex-column">
+                <div class="flex-grow-1" style="height:0px; overflow-y: auto; overflow-x: hidden;" ng-show="uid">
+                    <ng-include src="'appMenu.html'"></ng-include>
+                    <!-- ng가 들어가면 코드가 들어가야함 다양한 연산식도 가능-->
+                </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-8 p-3">
+                <div class="h-100 d-flex flex-column">
+                <div class="flex-grow-1 overflow-auto pr-3" style="height:0px">
+                    <ng-view/>
+                </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-2 p-3 bg-black">
+                <div class="h-50 d-flex flex-column">
+                    <div class="flex-grow-1 p-2" style="height:0px; overflow-y: auto; overflow-x: hidden; border: solid 1px black; border-radius: 15px;" ng-show="uid">
+                        <ng-include src="'profile.html'"></ng-include>
+                        <!-- ng가 들어가면 코드가 들어가야함 다양한 연산식도 가능-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        </div>
+    </div>
+</body>
+</html>

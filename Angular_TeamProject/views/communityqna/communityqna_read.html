@@ -1,0 +1,29 @@
+<div class="card-body">
+    <div>
+        <div class="form-group">
+            <label>제목:</label>
+            <input class="form-control" ng-model="communityqna.btitle" readonly/>
+        </div>
+        <div class="form-group">
+            <label>글쓴이:</label>
+            <input class="form-control" ng-model="communityqna.userid" readonly/>
+        </div>
+        <div class="form-group">
+            <label>날짜:</label>
+            <input class="form-control" value="{{communityqna.bdate | date:'yyyy.MM.dd'}}" readonly/>
+        </div>
+        <div class="form-group">
+            <label>조회수:</label>
+            <input class="form-control" ng-model="communityqna.bcount" readonly/>
+        </div>
+        <div class="form-group">
+            <label>내용:</label>
+            <textarea class="form-control" ng-model="communityqna.bcontent" readonly></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
+        <button class="btn btn-primary btn-sm" ng-click="createReplForm(communityqna.boardno)">댓글달기</button> 
+        <button class="btn btn-primary btn-sm" ng-click="updateCqnaForm()">수정</button> 
+        <button class="btn btn-primary btn-sm" ng-click="deleteCqna(communityqna.boardno)">삭제</button>       
+    </div>
+</div>

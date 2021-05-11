@@ -1,0 +1,68 @@
+<div>
+  <div class="form-group">
+    <label>상품이름:</label>
+    <input class="form-control" ng-model="product.pname"/>
+</div>
+  <div class="form-group">
+      <label>글쓴이:</label>
+      <input class="form-control" value="{{uid}}" readonly/>
+  </div>
+  <div class="form-group">
+      <label>날짜:</label>
+      <input class="form-control" value="{{product.pregisterdate | date:'yyyy.MM.dd'}}" readonly/>
+  </div>
+  <div class="form-group">
+    <label>카테고리:</label>
+    <input class="form-control" ng-model="product.pcategory"/>
+  </div>
+  <div class="form-group">
+      <label>상품가격:</label>
+      <input class="form-control" ng-model="product.pprice"/>
+  </div>
+  <div class="form-group">
+    <label>판매갯수:</label>
+    <input class="form-control" ng-model="product.psalescount"/>
+  </div>
+  <div class="form-group">
+    <label>재고갯수:</label>
+    <input class="form-control" ng-model="product.pstock"/>
+  </div>
+  <div class="form-group">
+    <label>상품활성화:</label>
+    <input class="form-control" ng-model="product.penable"/>
+  </div>
+    <div class="form-group">
+      <label>첨부1:</label>
+          <img ng-hide="product.detailimgoname == 'null'" src="{{battachUrl(product.productno)}}" width="200" class="mb-2"/>
+      <input id="img1" type="file" class="form-control-file" />
+  </div>    
+    
+  <div class="form-group">
+    <label>첨부2:</label>
+        <img ng-hide="imglist[0].ioriginalname == 'null'" src="{{imgbattachUrl(imglist[0].imgno)}}" width="200" class="mb-2"/>
+        <input type="hidden" ng-model="imglist[0].imgno">
+    <input id="img2"  type="file" class="form-control-file" />
+  </div>
+  <div class="form-group">
+    <label>첨부3:</label>
+        <img ng-hide="imglist[1].ioriginalname == 'null'" src="{{imgbattachUrl(imglist[1].imgno)}}" width="200" class="mb-2"/>
+        <input type="hidden" ng-model="imglist[1].imgno">
+    <input id="img3" type="file" class="form-control-file" />
+  </div>
+  <div class="form-group">
+    <label>첨부4:</label>
+        <img ng-hide="imglist[2].ioriginalname == 'null'" src="{{imgbattachUrl(imglist[2].imgno)}}" width="200" class="mb-2"/>
+        <input type="hidden" ng-model="imglist[2].imgno">
+    <input id="img4" type="file" class="form-control-file" />
+  </div>      
+  <div class="form-group">
+    <label>첨부5:</label>
+        <img ng-hide="imglist[3].ioriginalname == 'null'" src="{{imgbattachUrl(imglist[3].imgno)}}" width="200" class="mb-2"/>
+        <input type="hidden" ng-model="imglist[3].imgno">
+    <input id="img5" type="file" class="form-control-file" />
+  </div> 
+
+</div>
+  <button class="btn btn-primary btn-sm" ng-click="updateProduct(product, imglist)">수정</button>
+  <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
+</div>

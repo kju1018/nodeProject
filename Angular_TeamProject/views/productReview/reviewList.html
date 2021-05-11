@@ -1,0 +1,68 @@
+
+
+<div class="form-group row ml-0 mr-0 mt-3">
+    <div class="mr-1">
+        <select class="form-control form-control-sm" ng-model="searchType" ng-required="true">
+            <option value="titlecontent">제목+내용</option>
+            <option value="userid">작성자</option>
+            <option value="productname">상품명</option>
+        </select>
+    </div>
+ 
+    <div class="mr-1">
+        <input type="text" class="form-control form-control-sm" 
+                    ng-keypress="onKeyPress($event, searchType, keyword)"
+                    ng-model="keyword"/>
+    </div>
+                   <!-- ng-keypress="onKeyPress($event, searchType, keyword)" -->
+    <div>
+        <button class="btn btn-sm btn-secondary" ng-click="getList(1, searchType, keyword)">검색</button>
+    </div>
+</div>
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th width="9%" ng-click="getList(pager.pageNo, null, null, 'boardno')" style="cursor: pointer;">번호<img ng-if="reviewSort == 'boardno'" src="./resources/caret-down-fill.svg"></th>
+            <th width="18%">사진</th>
+            <th width="20%" ng-click="getList(pager.pageNo, null, null, 'pname')" style="cursor: pointer;">상품명<img ng-if="reviewSort == 'pname'" src="./resources/caret-down-fill.svg"></th>
+            <th width="18%" ng-click="getList(pager.pageNo, null, null, 'btitle')" style="cursor: pointer;">제목<img ng-if="reviewSort == 'btitle'" src="./resources/caret-down-fill.svg"></th>
+            <th width="10%" ng-click="getList(pager.pageNo, null, null, 'userid')" style="cursor: pointer;">글쓴이<img ng-if="reviewSort == 'userid'" src="./resources/caret-down-fill.svg"></th>
+            <th width="15%" ng-click="getList(pager.pageNo, null, null, 'bdate')" style="cursor: pointer;">날짜<img ng-if="reviewSort == 'bdate'" src="./resources/caret-down-fill.svg"></th>
+            <th width="10%" ng-click="getList(pager.pageNo, null, null, 'bcount')" style="cursor: pointer;">조회수<img ng-if="reviewSort == 'bcount'" src="./resources/caret-down-fill.svg"></th>
+        </tr>
+        <tr ng-repeat="review in reviews">
+            <td class="align-middle">{{review.boardno}}</td>
+            <td class="text-center">
+                <a ng-hide="review.borgimg == null" href="{{battachUrl(review.boardno)}}">
+                    <img src="{{battachUrl(review.boardno)}}" height="150"/>
+                </a>
+            </td>
+            <td class="align-middle">{{review.pname}}</td>
+            <td class="align-middle"  style="cursor: pointer;"><a ng-click="read(review.boardno)"  style="color: rgb(77, 76, 76);">{{review.btitle}}</a></td>
+            <td class="align-middle">{{review.userid}}</td>
+            <td class="align-middle">{{review.bdate | date:"yyyy.MM.dd"}}</td>
+            <td class="align-middle">{{review.bcount}}</td>
+        </tr>
+        <tr ng-if="reviews.length != '0'">
+            <td colspan="7" style="text-align: center;" >
+                <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(1)">처음</button> 
+                <button class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo>1" 
+                        ng-click="getList(pager.startPageNo-1)">이전</button>
+                <button ng-repeat="i in pageRange"
+                        class="btn btn-sm {{(pager.pageNo==i)?'btn btn-secondary btn-sm':'btn btn-outline-secondary btn-sm'}} {{!$last?'mr-1':''}}" 
+                        ng-click="getList(i)">{{i}}</button>
+                <button class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo < pager.totalGroupNo" 
+                        ng-click="getList(pager.endPageNo+1)">다음</button>
+                <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(pager.totalPageNo)">맨끝</button>
+            </td>
+        </tr>
+    </table>
+
+    <div class="text-center" ng-if="reviews.length == '0'">
+        <p class="border pt-5 pb-5">검색 결과가 없습니다.</p>
+    </div>
+</div>

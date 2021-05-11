@@ -1,0 +1,53 @@
+<div>
+    <div class="form-group">
+        <label>상품이름:</label>
+        <input class="form-control" ng-model="product.pname"/>
+    </div>
+    <div class="form-group">
+      <label>작성자:</label>
+      <input class="form-control" value="{{uid}}" readonly/>
+    </div>
+    <div class="form-group">
+        <label>카테고리:</label>
+        <input class="form-control" ng-model="product.pcategory"/>
+    </div>
+    <div class="form-group">
+        <label>상품가격:</label>
+        <input class="form-control" ng-model="product.pprice"/>
+    </div>
+    <div class="form-group">
+      <label>판매갯수:</label>
+      <input class="form-control" ng-model="product.psalescount"/>
+    </div>
+    <div class="form-group">
+      <label>재고갯수:</label>
+      <input class="form-control" ng-model="product.pstock"/>
+    </div>
+    <div class="form-group">
+      <label>상품활성화:</label>
+      <input class="form-control" ng-model="product.penable"/>
+    </div>
+    <div class="form-group">
+      <label>사진1:</label>
+      <input id="img1" type="file" class="form-control-file" />
+    </div>
+    <div class="form-group">
+      <label>사진2:</label>
+      <input id="img2" type="file" class="form-control-file" />
+    </div>
+    <div class="form-group">
+      <label>사진3:</label>
+      <input id="img3" type="file" class="form-control-file" />
+    </div>
+    <div class="form-group">
+      <label>사진4:</label>
+      <input id="img4" type="file" class="form-control-file" />
+    </div>
+    <div class="form-group">
+      <label>사진5:</label>
+      <input id="img5" type="file" class="form-control-file" />
+    </div>
+
+    <button class="btn btn-primary btn-sm" ng-click="createProduct(product)">등록</button>
+    <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
+</div>

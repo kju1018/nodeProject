@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-header">
+    userlist
+  </div>
+
+  <div class="card-body">
+    <div >
+     <div class="container mb-3" class="col-4 mb-3 align-self-end">
+        <div class="row justify-content-end"> 
+            <div class="col-2 align-self-end" >
+              <select class="custom-select" ng-model="searchHow.searchType">
+                <option value="selecopt" selected>선택</option>
+                <option value="id">아이디</option>
+                <option value="name">이름</option>
+                <option value="email">이메일</option>
+              </select>
+            </div>
+            <div class="col-3 " >
+              <input class="form-control" type="text" ng-model="searchHow.keyword">
+            </div>
+            <div >
+                <button type="button" class="btn btn-outline-dark" ng-click="searchList()">검색</button>
+            </div>
+        </div>
+    </div>
+      <table class="table table-striped table-bordered">
+          <tr>
+              <th ng-click="caselist('userid')" style="cursor: pointer; text-align: center;"><span>아이디</span></th>
+              <th ng-click="caselist('name')" style="cursor: pointer; text-align: center;"><span>이름</span></th>
+              <th ng-click="caselist('email')" style="cursor: pointer; text-align: center;"><span>이메일</span></th>
+              <th ng-click="caselist('date')" style="cursor: pointer; text-align: center;"><span>가입날짜</span></th>
+              <th style="text-align: center;"><span>활성화</span></th>
+              <th style="text-align: center;"><span>pw초기화</span></th>
+          </tr>
+          <tr ng-repeat="user in users"> <!--tr이 repeat됨. boards라는 배열에서 하나씩 객체를 가져옴 -->
+              <td style="text-align: center;"><span>{{user.userid}}</span></td>
+              <td style="text-align: center;"><span>{{user.uname}}</span></td> <!--click을 했을 때 read라고 하는 상태함수에 번호가 들어가서 실행이 됨. 이것도 컨트롤러에서 만들어야 함-->
+              <td style="text-align: center;"><span>{{user.uemail}}</span></td>
+              <td style="text-align: center;"><span>{{user.ujoindate | date:"yyyy.MM.dd"}}</span></td>
+              <td style="text-align: center;" ng-if="user.uenabled == 0 "><a ng-click="activate(user.userid)"type="button" class="btn btn-outline-primary">활성화</a></td>
+              <td style="text-align: center;" ng-if="user.uenabled == 1 "><a ng-click="disabled(user.userid)"type="button" class="btn btn-outline-danger">비활성화</a></td>
+              <td style="text-align: center;"><a ng-click="update(user.userid)" type="button" class="btn btn-outline-warning">초기화</a></td>
+          </tr>
+          <td colspan="6" style="text-align: center;">
+            <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(1)">처음</button> <!--처음이란 것은 항상 존재-->
+            <button   class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo>1" 
+                        ng-click="getList(pager.startPageNo-1)">이전</button> <!--있을 수도 있고 없을 수도 있음. ng-show -->
+            <button ng-repeat="i in pageRange"
+                      class="btn btn-sm {{(pager.pageNo==i)?'btn btn-secondary btn-sm':'btn btn-outline-secondary btn-sm'}} {{!$last?'mr-1':''}}" 
+                        ng-click="getList(i)">{{i}}</button>
+                        <!--pageRange라는 배열에서 숫자(i)를 하나 받아서
+                            {{(pager.pageNo==i)?'btn-danger':'btn-outline-success'}}: 현재 페이지의 색을 빨간색으로 그렇지 않다면 outline만 있도록 하기 위해서  
+                            {{!$last?'mr-1':''}} : 마지막페이지라면 마진을 줌
+                            "getList(i)">{{i}}: 클릭하면 해당 페이지로 이동
+                        -->
+            <button   class="btn btn-light btn-sm" 
+                        ng-show="pager.groupNo < pager.totalGroupNo" 
+                        ng-click="getList(pager.endPageNo+1)">다음</button> <!--맨 마지막 그룹이면 다음이 안 나옴-->
+            <button class="btn btn-dark btn-sm" 
+                        ng-click="getList(pager.totalPageNo)">맨끝</button> <!--이건 처음과 같이 항상 있어야 함-->
+        </td> 
+      </table>
+    </div>
+  </div>
+</div>

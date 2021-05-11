@@ -1,0 +1,84 @@
+<div class="card">
+    <div class="card-header">
+        <span class="font-weight-bold">주문 내역</span>
+    </div>
+
+    <div class="card-body">
+        <p>주문내역 상세</p>
+        <br/>
+        <div >
+            <table class="table table-bordered">
+                <p class="mb-4">주문 상품</p>
+                <tr>
+                    <th>
+                        상품명
+                    </th>
+                    <th>가격</th>
+                    <th>수량</th>
+                </tr>
+                <tr ng-repeat="orderproduct in order.orderproductlist">
+                    <td>
+                        {{orderproduct.pname}}
+                    </td>
+                    <td>{{orderproduct.pprice}} 원</td>
+                    <td>{{orderproduct.oquantity}}개</td>
+                </tr>
+            </table>
+            <br/>
+
+            <p>주문 정보</p>
+            <table class="table">
+                <tr>
+                    <th>주문번호</th>
+                    <td>{{order.orderno}}</td>
+                </tr>
+                <tr>
+                    <th>주문일자</th>
+                    <td>{{order.odate | date:"yyyy년 MM월 dd일"}}</td>
+                </tr>
+                <tr>
+                    <th>결제방법</th>
+                    <td>[{{order.omethod}}] KOSA은행 110-4234-2342342 (THE, FIVE)</td>
+                </tr>
+                <tr>
+                    <th>주문자</th>
+                    <td>{{order.userid}}</td>
+                </tr>
+                <tr>
+                    <th>주문 상태</th>
+                    <td>{{order.ostatus}}</td>
+                </tr>
+            </table> 
+            <br/>
+            
+            <p>배송지 정보</p> 
+            <table class="table"> 
+                <tr>
+                    <th>받으시는분</th>
+                    <td>{{order.oreceiver}}</td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td>{{order.oaddress}}</td>
+                </tr>
+                
+                <tr>
+                    <th>휴대전화</th>
+                    <td colspan="3">{{order.onumber}}</td>
+                </tr>
+                
+                <tr>
+                    <th>배송메시지</th>
+                    <td colspan="3">{{order.omessage}}</td>
+                </tr>
+            </table>
+            <div style="text-align: center;"><a class="btn btn-dark mt-5" href="/#!/ordered_list">주문 목록으로</a></div>
+
+            <button ng-if="order.ostatus == '배송중'" class="btn btn-outline-dark btn-sm" 
+                    ng-click="completeStatus()">배송 완료</button>
+            <button ng-if="order.ostatus == '배송중' || order.ostatus == '배송완료'" class="btn btn-outline-dark btn-sm" 
+                    ng-click="cancelStatus()">배송 취소</button>
+
+        </div>
+    </div>    
+</div>

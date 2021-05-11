@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "nodeuser",
+    "password": "12345",
+    "database": "team5",
+    "host": "localhost",
+    "dialect": "mysql",
+    "pool": {
+      "max":3,
+      "min":1
+    }
+  },
+  "test": {
+    "username": "nodeuser",
+    "password": "12345",
+    "database": "team5",
+    "host": "localhost",
+    "dialect": "mysql",
+    "pool": {
+      "max":3,
+      "min":1
+    }
+  },
+  "production": {
+    "username": "nodeuser",
+    "password": "12345",
+    "database": "team5",
+    "host": "localhost",
+    "dialect": "mysql",
+    "pool": {
+      "max":3,
+      "min":1
+    }
+  }
+}

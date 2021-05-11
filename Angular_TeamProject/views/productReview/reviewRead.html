@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-body">
+        <div>
+            <div class="form-group">
+                <label>사진:</label>
+                <a ng-hide="review.borgimg == null" href="{{battachUrl(review.boardno)}}">
+                    <img src="{{battachUrl(review.boardno)}}" width="200"/>
+                </a>
+            </div>
+
+            <div class="form-group">
+                <label>제목:</label>
+                <input class="form-control" ng-value="review.btitle" readonly/>
+            </div>
+            <div class="form-group">
+                <label>제품명:</label>
+                <input class="form-control" ng-value="review.pname" readonly/>
+            </div>
+            <div class="form-group">
+                <label>글쓴이:</label>
+                <input class="form-control" ng-value="review.userid" readonly/>
+            </div>
+            <div class="form-group">
+                <label>내용:</label>
+                <textarea class="form-control" ng-value="review.bcontent" readonly></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>조회수:</label>
+                <input class="form-control" ng-value="review.bcount" readonly/>
+            </div>
+            <div class="form-group">
+                <!-- <label>첨부:</label>
+                <a ng-hide="board.battachoname == null" href="{{battachUrl(board.bno)}}">
+                    <img src="{{battachUrl(board.bno)}}" width="200"/>
+                </a> -->
+            </div>
+            <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button> 
+            <button class="btn btn-primary btn-sm" ng-click="deleteBoard(review.boardno)">삭제</button>       
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+<div class="card" style="width: 1070px;"  ng-show="!uid">
+    <div class="card-header">WELCOME</div>
+    <div class="card-body">
+        <div style="width: 400px; margin: auto; margin-top: 60px; margin-bottom: 40px;">
+        <form>
+            <div class="form-group">
+              <label for="uid">User ID</label>
+              <input id="uid" type="text" class="form-control" ng-model="user.userid" autocomplete="username">
+            </div>
+            <div class="form-group">
+              <label for="upassword">User Password</label>
+              <input id="upassword" type="password" class="form-control" ng-model="user.upassword" autocomplete="current-password">
+            </div>
+            <!-- AngularJS는 자동 submit 기능이 없음 -->
+            <button class="btn btn-dark" ng-click="login(user)">Login</button>
+          </form>
+        </div>
+    </div>
+        <div ng-show="!uid">
+            <img src="./resources/aboutus.png" style="width: 1070px;">
+        </div>
+</div>
+   
+
+    <div ng-show="uid">
+      <div class="container-fluid">
+        <img src="./resources/slide10.PNG" style="width: 1070px;">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active"> 홈페이지 관리 </li>
+        </ol>
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card text-dark mb-4">
+                  <div class="card-header">총 회원수[활성화]</div>
+                  <div class="card-body text-center"><span style="font-size: 40px;">{{usercount}}</span>개</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-secondary stretched-link" href="/#!/auth">> View Details</a>
+                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card text-dark mb-4">
+                    <div class="card-header">총 리뷰수</div>
+                    <div class="card-body text-center"><span style="font-size: 40px;">{{reviewCount}}</span>개</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-secondary stretched-link" href="/#!/review">> View Details</a>
+                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card text-dark mb-4">
+                    <div class="card-header">총 주문수</div>
+                    <div class="card-body text-center"><span style="font-size: 40px;">{{orderCount}}</span>개</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-secondary stretched-link" href="/#!/ordered_list">> View Details</a>
+                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card text-dark mb-4">
+                    <div class="card-header">총 상품수</div>
+                    <div class="card-body text-center"><span style="font-size: 40px;">{{totalRows}}</span>개</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-secondary stretched-link" href="/#!/product">> View Details</a>
+                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area mr-1"></i>
+                        BEST 7 [판매순] <a class="small text-warning stretched-link" href="/#!/product">View Details</a>
+                    </div>
+                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="0"></canvas>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <tr>                            
+                            <th class="text-center">상품이름</th>
+                            <th class="text-center">판매갯수</th>
+                          </tr>
+                          <tr ng-repeat="bestitem in best">                            
+                            <th class="text-center">{{bestitem.pname}}</th>
+                            <th class="text-center">{{bestitem.psalescount}}</th>
+                          </tr>                          
+                        </table>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar mr-1"></i>
+                        NEW 7 [신상품순] <a class="small text-warning stretched-link" href="/#!/product">View Details</a>
+                    </div>
+                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="0"></canvas>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <tr>                            
+                            <th class="text-center">상품이름</th>
+                            <th class="text-center">상품등록일</th>
+                          </tr>
+                          <tr ng-repeat="item in newitem">                            
+                            <th class="text-center">{{item.pname}}</th>
+                            <th class="text-center">{{item.pregisterdate | date:"yyyy.MM.dd"}}</th>
+                          </tr>                          
+                        </table>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+              <i class="fas fa-table mr-1"></i>
+              [베스트 리뷰] TOP 7 <a class="small text-warning stretched-link" href="/#!/review"> View Details</a>
+          </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                          <tr>
+                              <th class="text-center" width="18%">제품사진</th>
+                              <th class="text-center" width="22%">제품명</th>
+                              <th class="text-center" width="29%">제목</th>
+                              <th class="text-center" width="10%">작성자</th>
+                              <th class="text-center" width="14%">작성일</th>
+                              <th class="text-center" width="7%">조회</th>
+                          </tr>
+                          <tr ng-repeat="review in reviews">
+                            <td class="text-center">
+                                <a ng-hide="review.borgimg == null" href="{{battachUrl(review.boardno)}}">
+                                    <img src="{{battachUrl(review.boardno)}}" height="100"/>
+                                </a>
+                            </td>
+                            <td class="text-center">{{review.pname}}</td>
+                            <td class="text-center">{{review.btitle}}</td>
+                            <td class="text-center">{{review.userid}}</td>
+                            <td class="text-center">{{review.bdate | date:"yyyy.MM.dd"}}</td>
+                            <td class="text-center">{{review.bcount}}</td>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                          
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                공지사항 <a class="small text-warning stretched-link" href="#"> View Details</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="10%">번호</th>
+                                <th class="text-center" width="40%">제목</th>
+                                <th class="text-center" width="20%">작성자</th>
+                                <th class="text-center" width="20%">작성일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="notice in notices">
+                                <td class="text-center">{{notice.boardno}}</td>
+                                <td class="text-center">{{notice.btitle}}</td>
+                                <td class="text-center">{{notice.userid}}</td>
+                                <td class="text-center">{{notice.bdate | date:"yyyy.MM.dd"}}</td>
+                            </tr> 
+                            <tr> <!--여긴 페이저 만드는 것-->
+                                <td colspan="5" style="text-align: center;">
+                                    <button class="btn btn-dark btn-sm" 
+                                                ng-click="getNotice(1)">처음</button> <!--처음이란 것은 항상 존재-->
+                                    <button   class="btn btn-light btn-sm" 
+                                                ng-show="pager.groupNo>1" 
+                                                ng-click="getNotice(pager.startPageNo-1)">이전</button> <!--있을 수도 있고 없을 수도 있음. ng-show -->
+                                    <button ng-repeat="i in pageRange"
+                                              class="btn btn-sm {{(pager.pageNo==i)?'btn btn-secondary btn-sm':'btn btn-outline-secondary btn-sm'}} {{!$last?'mr-1':''}}" 
+                                                ng-click="getNotice(i)">{{i}}</button>
+                                    <button   class="btn btn-light btn-sm" 
+                                                ng-show="pager.groupNo < pager.totalGroupNo" 
+                                                ng-click="getNotice(pager.endPageNo+1)">다음</button> <!--맨 마지막 그룹이면 다음이 안 나옴-->
+                                    <button class="btn btn-dark btn-sm" 
+                                                ng-click="getNotice(pager.totalPageNo)">맨끝</button> <!--이건 처음과 같이 항상 있어야 함-->
+                                </td>
+                              </tr>
+                          </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+              <i class="fas fa-table mr-1"></i>
+              주소록 
+          </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                          <tr>
+                              <th class="text-center" width="10%">아이디</th>
+                              <th class="text-center" width="40%">이름</th>
+                              <th class="text-center" width="20%">전화번호</th>
+                              <th class="text-center" width="20%">이메일</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="adminlist in adminlists">
+                            <td class="text-center">{{adminlist.userid}}</td>
+                            <td class="text-center">{{adminlist.uname}}</td>
+                            <td class="text-center">{{adminlist.utel}}</td>
+                            <td class="text-center">{{adminlist.uemail}}</td>
+                        </tr> 
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
