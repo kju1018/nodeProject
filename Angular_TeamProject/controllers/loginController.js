@@ -3,9 +3,9 @@ angular.module("app")
                                           orderService ,$window, $rootScope, $location) { //서비스(exam26Service) 주입받음
     $scope.$on("$routeChangeSuccess", () => {
       if($rootScope.uid != null){
-        // $scope.getReviewCount();
-        // $scope.getOrderCount();
-        // $scope.getReviewList();
+        $scope.getReviewCount();
+        $scope.getOrderCount();
+        $scope.getReviewList();
         $scope.userCount();
         $scope.adminlist();
         // $scope.getMainList();
@@ -17,7 +17,6 @@ angular.module("app")
     $scope.login = (user) => {
       loginService.login(user)
         .then((response) => {
-          console.log("response: ", response);
           $rootScope.uid = response.data.uid; //스프링의 map의 정보를 받음
           $rootScope.authToken = response.data.authToken;
           $rootScope.uemail = response.data.email;
@@ -30,8 +29,6 @@ angular.module("app")
           $location.url("/");
         })
         .catch((response) => {
-          console.log(response);
-          console.log(response.data.error.message);
           $window.alert("로그인 실패: "+ response.data.error.message);
         });
     }
@@ -53,6 +50,7 @@ angular.module("app")
     $scope.getReviewList = () => {
       reviewService.bestReview()
         .then((response) => {
+          console.log(response.data);
           $scope.reviews = response.data;
         });
     }
@@ -65,7 +63,6 @@ angular.module("app")
     $scope.userCount = () => {
       userService.userCount()
       .then((response => {
-        console.log(response);
         $scope.usercount = response.data;
       }))
     }
@@ -73,7 +70,6 @@ angular.module("app")
     $scope.adminlist = () => {
       userService.adminlist()
       .then((response) => {
-        console.log(response);
        $scope.adminlists = response.data;
       })
     }

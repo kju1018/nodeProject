@@ -16,11 +16,11 @@
                     <th>가격</th>
                     <th>수량</th>
                 </tr>
-                <tr ng-repeat="orderproduct in order.orderproductlist">
+                <tr ng-repeat="orderproduct in order.OrderProducts">
                     <td>
-                        {{orderproduct.pname}}
+                        {{orderproduct.Product.pname}}
                     </td>
-                    <td>{{orderproduct.pprice}} 원</td>
+                    <td>{{orderproduct.Product.pprice}} 원</td>
                     <td>{{orderproduct.oquantity}}개</td>
                 </tr>
             </table>

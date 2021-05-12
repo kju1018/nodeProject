@@ -8,6 +8,7 @@ angular.module("app")
             if(orderno != null){ // 상세페이지로 들어갔을경우
                 orderService.orderView(orderno)
                 .then((response) => {
+                    console.log(response.data);
                     $scope.order = response.data;
                 });
             } else { // 리스트로 들어갔을때

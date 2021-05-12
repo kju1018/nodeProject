@@ -12,6 +12,10 @@ const cookieParser = require("cookie-parser");
 
 //라우터 가져오기
 const userRoute = require("./routes/user-route");
+const orderRoute = require("./routes/order-route");
+const reviewRoute = require("./routes/review-route");
+const noticeRoute =require("./routes/notice-route");
+
 
 // .env파일을 읽어서 process.env에 추가
 dotenv.config();
@@ -64,13 +68,17 @@ app.use(express.json());//raw/json: {"param1":"value1", "param2":"value2"}
 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-app.use((req, res, next) => {
-    //JWT인증일 경우
-    jwtAuth.setAuth(req, res);
-    next();
-})
+// app.use((req, res, next) => {
+//     //JWT인증일 경우
+//     jwtAuth.setAuth(req, res);
+//     next();
+// })
 
 app.use("/auth", userRoute);
+app.use("/orders", orderRoute);
+app.use("/productReview", reviewRoute);
+app.use("/community/notice", noticeRoute);
+
 
 app.use((req, res, next) => {
     

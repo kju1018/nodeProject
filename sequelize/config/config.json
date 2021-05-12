@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "nodeuser",
+    "username": "team5",
     "password": "12345",
     "database": "team5",
-    "host": "localhost",
+    "host": "106.253.56.122",
     "dialect": "mysql",
     "pool": {
       "max":3,

@@ -33,11 +33,11 @@
         <tr ng-repeat="review in reviews">
             <td class="align-middle">{{review.boardno}}</td>
             <td class="text-center">
-                <a ng-hide="review.borgimg == null" href="{{battachUrl(review.boardno)}}">
+                <a ng-if="review.borgimg != null">
                     <img src="{{battachUrl(review.boardno)}}" height="150"/>
                 </a>
             </td>
-            <td class="align-middle">{{review.pname}}</td>
+            <td class="align-middle">{{review.Product.pname}}</td>
             <td class="align-middle"  style="cursor: pointer;"><a ng-click="read(review.boardno)"  style="color: rgb(77, 76, 76);">{{review.btitle}}</a></td>
             <td class="align-middle">{{review.userid}}</td>
             <td class="align-middle">{{review.bdate | date:"yyyy.MM.dd"}}</td>

@@ -30,35 +30,35 @@ angular.module("app")
     }
 
     $scope.searchList = () => {
-      console.log("keyword ",$scope.searchHow.keyword);
-      console.log("searchType ",$scope.searchHow.searchType);
       if($scope.searchHow.searchType =="selecopt" || $scope.searchHow.keyword == null ){
         alert("검색어 타입 선택 또는 검색어를 입력해주세요");
       }else {
-        if($scope.searchHow.searchType == "id"){
-          $scope.getList(1);
+        // if($scope.searchHow.searchType == "id"){
+        //   $scope.getList(1);
          
-        }
+        // }
 
-        if($scope.searchHow.searchType == "name"){
-          $scope.getList(1);
-        }
+        // if($scope.searchHow.searchType == "name"){
+        //   $scope.getList(1);
+        // }
 
-        if($scope.searchHow.searchType == "email"){
-          $scope.getList(1);
-        }
+        // if($scope.searchHow.searchType == "email"){
+        //   $scope.getList(1);
+        // }
+        $scope.listHow.listcase = null;
+        $scope.getList(1);
       }
     }
     
   
     $scope.getList = (pageNo) => {
-      sessionStorage.setItem("pageNo", pageNo);
-     var resultlist = userService.list(pageNo);
+    sessionStorage.setItem("pageNo", pageNo);
+    var resultlist = userService.list(pageNo);
      
-     if($scope.listHow.listcase == "name"){
+    if($scope.listHow.listcase == "name"){
       resultlist=userService.namelist(pageNo)
     }
-     if($scope.listHow.listcase == "email"){
+    if($scope.listHow.listcase == "email"){
       resultlist=userService.emaillist(pageNo);
     }
     if($scope.listHow.listcase == "date"){
@@ -73,9 +73,8 @@ angular.module("app")
     if($scope.searchHow.searchType == "email"){
       resultlist=userService.emailsearchlist($scope.searchHow.keyword, pageNo);
     }
-     resultlist
+    resultlist
       .then((response) => { 
-        console.log(response)
         $scope.pager = response.data.pager;
         $scope.users = response.data.userlist;
         $scope.pageRange = []; //배열 선언

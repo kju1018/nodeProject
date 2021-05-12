@@ -31,7 +31,7 @@ angular.module("app")
         $scope.view = "list";
       }) .catch((response) => {
         //$window.alert("로그인 실패: ", response.data);
-        $location.url("/home")
+        // $location.url("/home")
       });
     };
 
