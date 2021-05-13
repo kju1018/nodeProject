@@ -35,7 +35,7 @@
           <tr ng-repeat="board in boardlist"> 
               <td style="cursor: pointer; text-align: center;" ><span>{{board.boardno}}</span></td>
               <td style="cursor: pointer; text-align: center;" ng-click="read(board.boardno,'1')"><span>{{board.btitle}}</span></td> 
-              <td style="cursor: pointer; text-align: center;"><span>{{board.pname}}</span></td> 
+              <td style="cursor: pointer; text-align: center;"><span>{{board.Product.pname}}</span></td> 
               <td style="text-align: center;"><span>{{board.userid}}</span></td>
               <td style="text-align: center;"><span>{{board.bdate | date:"yyyy.MM.dd"}}</span></td>
               <td style="text-align: center;"><a ng-click="delete(board.boardno,pager.pageNo)" type="button" class="btn btn-outline-danger">삭제</a></td>

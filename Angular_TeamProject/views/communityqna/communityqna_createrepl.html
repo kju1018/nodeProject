@@ -2,18 +2,18 @@
     <div>
     <div class="form-group">
         <label>제목:</label>
-        <input class="form-control" ng-model="communityqna.btitle"/>
+        <input class="form-control" ng-model="communityqna.btitle" readonly/>
     </div>
     <div class="form-group">
         <label>작성자:</label>
-        <input class="form-control" value="{{uid}}" ng-model="communityqna.userid" readonly/>
+        <input class="form-control" value="{{uid}}" readonly/>
     </div>
     <div class="form-group">
         <label>내용:</label>
-        <textarea class="form-control" ng-model="communityqna.bcontent"></textarea>
+        <textarea class="form-control" ng-model="repl.bcontent"></textarea>
     </div>
 
-    <button class="btn btn-primary btn-sm" ng-click="createRepl(communityqna)">등록</button>
+    <button class="btn btn-primary btn-sm" ng-click="createRepl(repl)">등록</button>
     <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
 </div>
 </div>

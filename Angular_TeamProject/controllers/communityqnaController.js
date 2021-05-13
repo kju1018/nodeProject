@@ -42,7 +42,7 @@ angular.module("app")
         $scope.view = "list";
       }).catch((response) => {
         //$window.alert("로그인 실패: ", response.data);
-        $location.url("/home")
+        // $location.url("/home")
       });
     };
 
@@ -76,16 +76,19 @@ angular.module("app")
       $scope.view = "createrepl";
     };
 
-    $scope.createRepl = (communityqna) => {
-      communityqna.userid=sessionStorage.getItem("uid");
-      communityqna.btitle="ㄴ["+communityqna.btitle+"글의 답글]";
-      console.log(communityqna);
-      if(communityqna && communityqna.btitle && communityqna.bcontent) {
-        
-        communityqnaService.createrepl(communityqna)
+    $scope.createRepl = (repl) => {
+      repl.userid=$rootScope.uid;
+      repl.btitle="ㄴ["+$scope.communityqna.btitle+"글의 답글]";
+      repl.originno = $scope.communityqna.originno;
+      repl.grouplayer = 1;
+
+      if(repl && repl.btitle && repl.bcontent) {
+        console.log(repl);
+        communityqnaService.createrepl(repl)
           .then((response) => {
             $scope.getList(1);
             $scope.view = "list";
+            $scope.repl = null;
           });
       }
     };

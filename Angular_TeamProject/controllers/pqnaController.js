@@ -86,6 +86,7 @@ angular.module("app")
       .then((response) => { 
         $scope.pager = response.data.pager;
         $scope.boardlist = response.data.pqnaboardlist;
+        console.log($scope.boardlist);
         $scope.pageRange = []; //배열 선언
         for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
           $scope.pageRange.push(i);
@@ -125,7 +126,7 @@ angular.module("app")
       console.log("boardpage",boardpage);
       var reviewpage = new Object();
       reviewpage.bcontent = reviewadd.content;
-      reviewpage.userid = "user1";
+      reviewpage.userid = $rootScope.uid;
       reviewpage.productno = boardpage.productno;
       reviewpage.btitle = boardpage.btitle;
       reviewpage.originno = boardpage.boardno;

@@ -47,7 +47,7 @@ angular.module("app")
         return promise;
       },
       reviewread: function(boardno){
-        const promise = $http.get(BASE_URL + "/rivewread", {params:{boardno}});
+        const promise = $http.get(BASE_URL + "/reviewread", {params:{boardno}});
         return promise;
       },
       updateReview: function(readreview) {

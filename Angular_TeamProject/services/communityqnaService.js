@@ -19,8 +19,8 @@ angular.module("app")
         const promise = $http.post(BASE_URL, communityqna); //json으로 보냄
         return promise;
       },
-      createrepl: function(communityqna) {
-        const promise = $http.post(BASE_URL+"/repl", communityqna); //json으로 보냄
+      createrepl: function(repl) {
+        const promise = $http.post(BASE_URL+"/repl", repl); //json으로 보냄
         return promise;
       },
       update: function(communityqna) {
