@@ -1,4 +1,3 @@
-
 const db = require("../sequelize/models/index");
 const Op = db.Sequelize.Op;
 
@@ -153,9 +152,7 @@ module.exports = {
 
     create: async function(board) {
         try {
-            console.log(board);
             const rows = await db.ProductQna.create(board);
-            console.log(rows);
             return rows;
         } catch (error) {
             throw error;

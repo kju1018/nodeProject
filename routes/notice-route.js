@@ -58,5 +58,6 @@ router.get("/:boardno", async (req, res, next) => {
     }
 });
 
+
 module.exports = router;
 

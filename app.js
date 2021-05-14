@@ -17,6 +17,7 @@ const reviewRoute = require("./routes/review-route");
 const noticeRoute =require("./routes/notice-route");
 const pqnaRoute = require("./routes/pqna-route");
 const cqnaRoute = require("./routes/cqna-route");
+const productRoute = require("./routes/product-route");
 
 
 // .env파일을 읽어서 process.env에 추가
@@ -82,6 +83,7 @@ app.use("/productReview", reviewRoute);
 app.use("/community/notice", noticeRoute);
 app.use("/pqnaBoard", pqnaRoute);
 app.use("/community/communityqna", cqnaRoute);
+app.use("/product", productRoute);
 
 
 

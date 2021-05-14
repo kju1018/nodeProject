@@ -116,7 +116,6 @@ router.get("/boardread", async (req, res, next) => {
 
         repTotalRow = await pqnaService.repCount(boardno);
         const pager = paging.init(5, 5, pageNo, repTotalRow);
-        console.log(repTotalRow);
         const reviewlist = await pqnaService.getReplies(pager, boardno);
         const boardpage = await pqnaService.getBoard(boardno);
         
@@ -151,7 +150,6 @@ router.put("/rivewupdate", async (req, res, next) => {
 router.post("/insert", async (req, res, next) => {
     try {
         const readreview = req.body;
-        console.log(readreview);
         pqnaService.create(readreview);
         
         res.json("success");

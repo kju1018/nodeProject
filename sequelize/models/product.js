@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
             models.Product.hasMany(models.OrderProduct,{foreignKey:"productno", sourceKey:"productno"});
             models.Product.hasMany(models.ProductReview,{foreignKey:"productno", sourceKey:"productno"});
             models.Product.hasMany(models.ProductQna,{foreignKey:"productno", sourceKey:"productno"});
+            models.Product.hasMany(models.ProductImg,{foreignKey:"productno", sourceKey:"productno"});
         }
     }
-    
     Product.init({
         productno: {
             type: DataTypes.INTEGER,
@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         pregisterdate: {
             type: DataTypes.DATE,
-            allowNull: false
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         },
         psalescount:{
             type: DataTypes.INTEGER,

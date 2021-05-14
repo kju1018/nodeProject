@@ -53,7 +53,6 @@ router.get("/:boardno", async (req, res, next) => {
 router.delete("/:boardno", async (req, res, next) => {
     try {
         const boardno = parseInt(req.params.boardno);
-        console.log(boardno);
         const row = await reviewService.deleteReview(boardno);
         res.json(row);
     } catch (error) {

@@ -23,7 +23,6 @@ router.post("/login", async (req, res, next) =>{
 router.post("/join", async (req, res, next) => {
     try {
         const user = {...req.body, ujoindate: new Date()};
-        console.log(user);
         const result = await userService.checkUser(user.userid);
         if(result.id === "success") {
             await userService.join(user);
@@ -32,7 +31,6 @@ router.post("/join", async (req, res, next) => {
             throw result;
         }
     } catch (error) {
-        console.log(error);
         next(error)
     }
 });

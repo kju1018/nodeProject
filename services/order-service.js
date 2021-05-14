@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const db = require("../sequelize/models/index");
 const Op = db.Sequelize.Op;
 

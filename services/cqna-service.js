@@ -49,12 +49,6 @@ module.exports = {
                     }
                 }
             }
-            // order: {
-            //     [Op.and]: [
-            //         [["originno", "DESC"]],
-            //         [["boardno", "ASC"]]
-            //     ]
-            // },
             const qnas = await db.CommunityQna.findAll({
                 where,
                 order: [
@@ -81,10 +75,31 @@ module.exports = {
         }
     },
 
-    deleteReview: async function(boardno) {
+    createRepl: async function(repl){
         try {
-            const row = await db.ProductReview.destroy({ where: {boardno}}); 
+            const row = await db.CommunityQna.create(repl);
+            return row;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteQna: async function(boardno) {
+        try {
+            const row = await db.CommunityQna.destroy({ where: {boardno}}); 
             return row;  
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    updateQna: async function(qna) {
+        try {
+            const row = await db.CommunityQna.update({
+                btitle: qna.btitle,
+                bcontent: qna.bcontent
+            }, {where: { boardno: qna.boardno }});
+            return row;
         } catch (error) {
             throw error;
         }

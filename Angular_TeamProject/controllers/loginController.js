@@ -8,8 +8,8 @@ angular.module("app")
         $scope.getReviewList();
         $scope.userCount();
         $scope.adminlist();
-        // $scope.getMainList();
-        // $scope.getNotice(1);
+        $scope.getMainList();
+        $scope.getNotice(1);
       }
     });
 
@@ -84,12 +84,12 @@ angular.module("app")
     }
 
     $scope.getNotice = (pageNo) => {
-      noticeService.getnotice(pageNo)
+      noticeService.list(pageNo)
       .then((response) => {
         console.log(response);
         $scope.pager = response.data.pager;
         console.log($scope.pager);
-        $scope.notices = response.data.notice;
+        $scope.notices = response.data.notices;
         $scope.pageRange = []; //배열 선언
         for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
           $scope.pageRange.push(i);

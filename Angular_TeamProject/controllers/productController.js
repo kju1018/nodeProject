@@ -20,12 +20,12 @@ angular.module("app")
       $scope.view = "create";
     };
 
-    $scope.battachUrl = (productno) => {
-      return productService.battachUrl(productno);
+    $scope.battachUrl = (product) => {
+      return productService.battachUrl(product);
     };
 
-    $scope.imgbattachUrl = (imgno) => {
-      return productService.imgbattachUrl(imgno);
+    $scope.imgbattachUrl = (productImg) => {
+      return productService.imgbattachUrl(productImg);
     };
 
     $scope.getMainList = () => {      
@@ -70,8 +70,8 @@ angular.module("app")
       if(category === "인테리어소품"){
         productService.list1(pageNo)
         .then((response) => { //성공적으로 되면 response 객체 얻음
-          $scope.pager = response.data.pager1;
-          $scope.products = response.data.products1;
+          $scope.pager = response.data.pager;
+          $scope.products = response.data.products;
           $scope.category = '인테리어소품';        
           $scope.pageRange = []; //배열 선언
           for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
@@ -84,8 +84,8 @@ angular.module("app")
       if(category === "디퓨저/캔들"){
         productService.list2(pageNo)
         .then((response) => { //성공적으로 되면 response 객체 얻음
-          $scope.pager = response.data.pager2;
-          $scope.products = response.data.products2;  
+          $scope.pager = response.data.pager;
+          $scope.products = response.data.products;  
           $scope.category = '디퓨저/캔들';       
           $scope.pageRange = []; //배열 선언
           for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
@@ -98,8 +98,8 @@ angular.module("app")
       if(category === "액자"){
         productService.list3(pageNo)
         .then((response) => { //성공적으로 되면 response 객체 얻음
-          $scope.pager = response.data.pager3;
-          $scope.products = response.data.products3;
+          $scope.pager = response.data.pager;
+          $scope.products = response.data.products;
           $scope.category = '액자';         
           $scope.pageRange = []; //배열 선언
           for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
@@ -112,8 +112,8 @@ angular.module("app")
       if(category === "조화/화병"){
         productService.list4(pageNo)
         .then((response) => { //성공적으로 되면 response 객체 얻음
-          $scope.pager = response.data.pager4;
-          $scope.products = response.data.products4;  
+          $scope.pager = response.data.pager;
+          $scope.products = response.data.products;  
           $scope.category = '조화/화병'; 
           $scope.pageRange = []; //배열 선언
           for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
@@ -129,15 +129,15 @@ angular.module("app")
     $scope.read = (productno) => {
       productService.read(productno)
         .then((response) => {
-          $scope.product = response.data.product;
-          $scope.imglist = response.data.imglist;
-                              
+
+          $scope.product = response.data;
+          $scope.imglist = $scope.product.imglist;
           $scope.view = "read"; //read라는 view를 보여주기
         });
     };
 
     $scope.createProduct = (product) => {
-      if(product && product.pname && product.pcategory && product.pprice && product.psalescount && product.pstock && product.penable) {
+      if(product && product.pname && product.pcategory && product.pprice && product.psalescount>=0 && product.pstock && product.penable) {
         var formData = new FormData();
         formData.append("pname", product.pname);
         formData.append("pcategory", product.pcategory);
@@ -182,8 +182,8 @@ angular.module("app")
     $scope.updateProductForm = (productno) => {
       productService.readimgs(productno)
         .then((response) => {
-          $scope.product = response.data.product;
-          $scope.imglist = response.data.imglist;
+          $scope.product = response.data;
+          $scope.imglist = $scope.product.imglist;
           $scope.view = "update";
         })     
     };

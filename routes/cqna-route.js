@@ -24,12 +24,8 @@ router.get("/search", async (req, res, next) => {
 router.post("/repl", async (req, res, next) => {
     try {
         const repl = req.body;
-        console.log(repl);
-        
-        // const pager = paging.init(5, 5, pageNo, totalRows);
-
-        // const communityqnas = await cqnaService.getQnas(pager, keyword, searchType);
-        // res.json({pager, communityqnas});
+        await cqnaService.createRepl(repl);
+        res.json("success");
 
     } catch (error) {
         next(error);
@@ -46,6 +42,25 @@ router.get("/:boardno", async (req, res, next) => {
     }
 });
 
+router.put("/", async(req, res, next) => {
+    try {
+        const qna = req.body;
+        cqnaService.updateQna(qna);
+        res.json("success");
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.delete("/:boardno", async (req, res, next) => {
+    try {
+        const boardno = req.params.boardno;
+        cqnaService.deleteQna(boardno);
+        res.json("success");
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = router;
 

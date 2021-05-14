@@ -36,11 +36,11 @@ angular.module("app")
         const promise = $http.get(BASE_URL + "/" + productno);
         return promise;
       },
-      battachUrl: function(productno){
-        return BASE_URL + "/battach/" + productno;
+      battachUrl: function(product){
+        return BASE_URL + "/imgbattach?imgoname=" + product.detailimgoname +"&imgsname="+ product.detailimgsname;
       },
-      imgbattachUrl: function(imgno){
-        return BASE_URL + "/imgbattach/" + imgno;
+      imgbattachUrl: function(productImg){
+        return BASE_URL + "/imgbattach?imgoname=" + productImg.ioriginalname +"&imgsname="+ productImg.isavename;
       },
       create: function(formData) {
         const promise = $http.post(BASE_URL, formData, {headers:{"Content-Type":undefined}}); //undefined
